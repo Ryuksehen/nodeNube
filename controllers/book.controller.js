@@ -31,9 +31,9 @@ const getBookId = async (req, res) => {
 
 // CONTROLADOR DE CREAR
 const createBook = async (req, res) => {
-  const { id, nombre, autor, año, categoria } = req.body;
+  const { nombre, autor, año, categoria } = req.body;
   try {
-    const newBook = new Book({ id, nombre, autor, año, categoria });
+    const newBook = new Book({ nombre, autor, año, categoria });
     await newBook.save();
     res.status(201).json(newBook);
   } catch (error) {
