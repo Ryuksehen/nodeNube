@@ -31,9 +31,9 @@ const getBookId = async (req, res) => {
 
 // CONTROLADOR DE CREAR
 const createBook = async (req, res) => {
-  const { nombre, autor, año, categoria } = req.body;
+  const { id, nombre, autor, año, categoria } = req.body;
   try {
-    const newBook = new Book({ nombre, autor, año, categoria });
+    const newBook = new Book({ id, nombre, autor, año, categoria });
     await newBook.save();
     res.status(201).json(newBook);
   } catch (error) {
@@ -67,7 +67,7 @@ const deleteBook = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const bookDeleted = await Book.findByIdAndDelete(id);
+    const bookDeleted = await Book.findOneAndDelete(id);
 
     if (!bookDeleted) {
       return res
