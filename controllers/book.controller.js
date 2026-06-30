@@ -67,7 +67,7 @@ const deleteBook = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const bookDeleted = await Book.findOneAndDelete(id);
+    const bookDeleted = await Book.findOneAndDelete({id: Number(id)}) ;
 
     if (!bookDeleted) {
       return res
