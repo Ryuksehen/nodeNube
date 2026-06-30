@@ -7,7 +7,8 @@ const bookSchema = new mongoose.Schema({
     año: { type: Number, required: true},
     categoria: { type: String, requerid: true}
 }, {
-    timestamps: true // esto crea autmoaticamente creactedAt y updatedAt
+    timestamps: true, // esto crea autmoaticamente creactedAt y updatedAt
+    versionKey: false
 })
 
 module.exports = mongoose.model("Book", bookSchema, "Libros")

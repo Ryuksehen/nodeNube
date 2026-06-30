@@ -46,7 +46,8 @@ const updateBook = async (req, res) => {
   const { id } = req.params;
   const { nombre, autor, año, categoria } = req.body;
   try {
-    const bookUpdated = await Book.findOneAndUpdate(  // modificado para que busque por el id del modelo
+    const bookUpdated = await Book.findOneAndUpdate(
+      // modificado para que busque por el id del modelo
       { id: Number(id) },
       { nombre, autor, año, categoria }, // aqui solo estos campos por uqe se va a modificar solo esos campos el id es unico asi queno
       { new: true },
@@ -66,10 +67,12 @@ const deleteBook = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const bookDeleted = await Book.findOneAndDelete(id);
+    const bookDeleted = await Book.findByIdAndDelete(id);
 
     if (!bookDeleted) {
-      return res.status(404).json({ message: error.message });
+      return res
+        .status(404)
+        .json({ message: "No se encontró el libro con ese ID" });
     }
 
     res.json({ message: "Libro eliminado correctamente " });
